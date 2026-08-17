@@ -1,0 +1,201 @@
+Section 1: Pseudocode Problems
+
+Problem PC-1: Prime Number Checker
+
+Algorithm PrimeCheck(N)
+    if N <= 1 then
+        print "Not Prime"
+        return
+    end if
+
+    if N == 2 then
+        print "Prime"
+        return
+    end if
+
+    limit = floor(sqrt(N))
+
+    for i = 2 to limit do
+        if N mod i == 0 then
+            print "Not Prime"
+            return
+        end if
+    end for
+
+    print "Prime"
+End Algorithm
+
+Example 1: N = 61 -> Prime
+Example 2: N = 8 -> Not Prime
+
+Problem PC-2: Number Digit Reversal
+
+Algorithm ReverseDigits(N)
+    rev = 0
+
+    while N > 0 do
+        digit = N mod 10
+        rev = rev * 10 + digit
+        N = floor(N / 10)
+    end while
+
+    print rev
+End Algorithm
+
+Example 1: N = 1234 -> 4321
+Example 2: N = 806 -> 608
+
+Section 2: Flowchart Problems
+
+Problem FC-1: Prime Number Flowchart
+
+Flowchart in text form:
+
+Start
+  |
+  v
+Input N
+  |
+  v
+Is N > 1?
+  |-- No --> Print "Not Prime" --> End
+  |
+  |-- Yes --> Is N == 2?
+                 |-- Yes --> Print "Prime" --> End
+                 |
+                 |-- No --> i = 2
+                                |
+                                v
+                          Is i <= sqrt(N)?
+                                |-- No --> Print "Prime" --> End
+                                |
+                                |-- Yes --> Is N mod i == 0?
+                                               |-- Yes --> Print "Not Prime" --> End
+                                               |
+                                               |-- No --> i = i + 1 --> Back to loop
+
+Problem FC-2: Number Digit Reversal Flowchart
+
+Flowchart in text form:
+
+Start
+  |
+  v
+Input N
+  |
+  v
+rev = 0
+  |
+  v
+Is N > 0?
+  |-- No --> Print rev --> End
+  |
+  |-- Yes --> digit = N mod 10
+                |
+                v
+           rev = rev * 10 + digit
+                |
+                v
+             N = floor(N / 10)
+                |
+                v
+            Back to Is N > 0?
+
+Section 3: Time Complexity Problems
+
+Problem TC-1: Linear Search Time Complexity
+
+Best Case:
+- If the target is the first element, like 8, the search ends immediately.
+- Number of comparisons = 1
+- Time complexity = O(1)
+
+Worst Case:
+- If the target is 0 or is not present in the array, the algorithm checks almost every element.
+- For n elements, comparisons = n
+- Time complexity = O(n)
+
+Average Case:
+- For a target at a random position, the algorithm examines about half the array on average.
+- Number of comparisons ≈ n/2
+- Time complexity = O(n)
+
+Problem TC-2: Iterative Binary Search Complexity
+
+Sorted array: {0, 2, 3, 4, 8, 61}
+Target: 4
+
+Step 1:
+low = 0, high = 5, mid = 2
+arr[2] = 3, and 3 < 4
+Search moves to the right half.
+
+Step 2:
+low = 3, high = 5, mid = 4
+arr[4] = 8, and 8 > 4
+Search moves to the left half.
+
+Step 3:
+low = 3, high = 3, mid = 3
+arr[3] = 4
+Target found.
+
+Worst-case comparison equation:
+T(N) = T(N/2) + 1
+This gives:
+T(N) = O(log N)
+
+Because each step halves the search space.
+
+Problem TC-3: Merge Sort Time Complexity
+
+Division tree for {8, 61, 2, 3, 4, 0}:
+
+{8, 61, 2, 3, 4, 0}
+      /             \
+ {8, 61, 2}       {3, 4, 0}
+    /    \           /    \
+ {8} {61,2}      {3} {4,0}
+           / \            / \
+         {61} {2}      {4} {0}
+
+At each level, the array is split into smaller subarrays.
+The total work at every level is O(n), because all elements are processed once.
+There are log2(n) levels.
+
+Recurrence:
+T(n) = 2T(n/2) + n
+Solving:
+Level 0: n
+Level 1: 2 * (n/2) = n
+Level 2: 4 * (n/4) = n
+...
+Last level: n
+
+Total = n * log2(n) + n
+Therefore:
+Time complexity = O(n log n)
+
+Section 4: Space Complexity Problems
+
+Problem SC-1: Linear Search Space Complexity
+
+The iterative Linear Search algorithm uses a few variables such as index and target, but it does not create any new data structure proportional to the input size.
+Therefore, the auxiliary space complexity is O(1).
+
+Problem SC-2: Binary Search Space Complexity
+
+Iterative Binary Search uses only low, high, and mid indices.
+It does not allocate extra arrays or recursion stack space.
+Therefore, the auxiliary space complexity is O(1).
+
+Problem SC-3: Merge Sort Space Complexity
+
+Merge Sort splits the array into smaller subarrays and then merges them back together.
+During merging, a temporary array is used to store the sorted result before copying it back.
+This extra memory grows with the size of the input array.
+Therefore, the auxiliary space complexity is O(n).
+
+Compared with in-place sorting algorithms like Insertion Sort or Quick Sort, Merge Sort uses more extra memory because it needs temporary storage during merging.
+Insertion Sort can work with O(1) extra space, and Quick Sort is usually O(log n) auxiliary space in the recursive version.
+So Merge Sort is less space efficient than in-place sorting algorithms.
